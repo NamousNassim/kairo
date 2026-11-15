@@ -1,4 +1,5 @@
 add_library(kairo_engine STATIC
+    src/Application.cpp
     src/engine.cpp
 )
 add_library(Kairo::Engine ALIAS kairo_engine)

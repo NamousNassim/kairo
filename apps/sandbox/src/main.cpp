@@ -1,8 +1,11 @@
 #include <kairo/engine.hpp>
+#include <kairo/Application.hpp>
 
 #include <iostream>
 
 int main()
 {
-    std::cout << "Hello from " << kairo::name() << "!\n";
+ Application  myApp = Application("KAIRO");
+
+    std::cout << myApp.getTitle()  << std::endl;
 }
