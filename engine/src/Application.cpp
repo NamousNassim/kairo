@@ -4,16 +4,9 @@
 
 Application::Application(std::string title) : is_running(false)
 {   
-    if(is_running)
-    {
-        std::cerr << "already working..." << std::endl;
-        return;
-    }
-
     this->title = title;
   
 }
-
 
 const std::string Application::getTitle()
 {
@@ -26,6 +19,10 @@ void Application::Initialisation()
     // something else here
 }
 
+void Application::CloseApplication()
+{
+    this->is_running = false;
+}
 
 void Application::Start()
 {     
@@ -36,7 +33,7 @@ void Application::Start()
         std::cin >> a; 
         if (a == 0)
         {
-            is_running = false;
+            this->CloseApplication();
         }
         
     }
