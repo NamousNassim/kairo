@@ -1,11 +1,13 @@
 #pragma once
+#include "kairo/GLFWSystem.hpp"
+#include "kairo/Window.hpp"
 #include <string>
 class Application
 {
     public:
     Application(std::string title);
-    const std::string getTitle();
-    void setiSRunning(bool isRunning){ this->is_running = isRunning; }
+    ~Application();
+    const std::string getTitle() const;
     void Start();
     void Initialisation();
     bool getAppState() const {return this->is_running;} 
@@ -13,4 +15,7 @@ class Application
     private:
     bool is_running;
     std::string title; 
+    GLFWSystem glfwSystem;
+    Window window;
+
 };

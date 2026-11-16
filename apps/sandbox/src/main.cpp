@@ -5,9 +5,10 @@
 
 int main()
 {
- Application  myApp = Application("KAIRO");
+  Application  myApp = Application("KAIRO");
 
     std::cout << myApp.getTitle()  << std::endl;
 
     myApp.Start();
+       
 }

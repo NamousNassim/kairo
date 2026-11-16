@@ -6,12 +6,11 @@ architecture, systems programming, and cross-platform development.
 ## Current status
 
 Milestone 1 establishes a reusable static engine library and a separate sandbox
-executable. The sandbox calls one public engine function and prints
-`Hello from Kairo Engine!`.
+executable. The sandbox currently runs a small console application loop.
 
 Rendering, window management, input, scene management, and editor tooling are
-planned. No game runtime is implemented yet, and there are no third-party
-dependencies.
+planned. GLFW is integrated as a build dependency; the window and GLFW lifecycle
+classes are still being developed.
 
 ## Platform targets
 
@@ -24,8 +23,18 @@ configurations printed the expected greeting and exited successfully.
 
 ## Build
 
-Requirements: CMake 3.28 or newer, a C++20 compiler, and a native build tool
-supported by CMake (for example, Make, Ninja, or MSBuild).
+Requirements: CMake 3.28 or newer, C and C++20 compilers, Git, and a native build
+tool supported by CMake (for example, Make, Ninja, or MSBuild).
+
+CMake downloads and builds GLFW 3.5.1 from a pinned commit using `FetchContent`.
+The first configuration of each build directory requires internet access.
+Dependencies remain under `out/build/`; no system-wide GLFW installation is
+needed. GLFW documentation, examples, tests, and installation rules are disabled.
+
+The engine links GLFW publicly because `kairo/GLFWSystem.hpp` includes its header.
+Consumers therefore inherit GLFW's include paths and link dependencies. The
+engine also sets `GLFW_INCLUDE_NONE` so GLFW does not implicitly include OpenGL
+headers; a graphics loader can be selected later.
 
 From the project root:
 
@@ -89,5 +98,5 @@ requirement. The engine has no dependency on the sandbox.
 - Explore GLFW and OpenGL initially, with Metal and Direct3D as possible future
   backends.
 
-The build foundation uses C++20 and CMake. Graphics libraries and other engine
+The build uses C++20, CMake, and GLFW. Rendering dependencies and other engine
 systems will be introduced in later milestones.

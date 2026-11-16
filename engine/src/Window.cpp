@@ -1,4 +1,6 @@
 #include "kairo/Window.hpp"
+#include "GLFW/glfw3.h"
+#include <cstddef>
 
 Window::Window(const unsigned int height , const unsigned width , std::string title) : isWindowCreated(false)
 {
@@ -13,11 +15,25 @@ Window::~Window()
 {
     if(this->isWindowCreated)
     {
-        // todo
+    glfwDestroyWindow(this->window);
+    this->window = nullptr;
+    this->isWindowCreated = false;
     }
 }
 bool Window::getIsWindowCreated () const
 {   
     return this->isWindowCreated;
 
+}
+
+void Window::InitWindow()
+{   if(!this->isWindowCreated)
+    {
+       this->window  = glfwCreateWindow(this->width,this->height,this->title.c_str(), nullptr, nullptr);
+if (this->window) {
+    this->isWindowCreated = true;
+    glfwMakeContextCurrent(this->window);  
+    }
+    }
+    
 }
