@@ -9,7 +9,7 @@ class Window
     void InitWindow();
     void CloseWindow();
     bool getIsWindowCreated ()const;
-
+    bool windowShouldClose() const;
     private:
     std::string title;
     unsigned int height;

@@ -11,6 +11,7 @@ class GLFWSystem
         GLFWSystem& operator=(const GLFWSystem&) = delete;
         bool getIsGLFWInitialized() const;
         void closeGLFW();
+        void PollEvents();
 
     private:
 

@@ -46,17 +46,10 @@ void Application::Start()
 {     
     Initialisation();
     
-        int a;
-    while (is_running)  {    
-        std::cout << window.getIsWindowCreated() << std::endl;
-        std::cout << this->getAppState() << std::endl;
-        
-
-
-        if (a == 0)
-        {
-            this->CloseApplication();
-        }
+    while (is_running && !window.windowShouldClose())  {    
+       
+        glfwSystem.PollEvents();
         
     }
+    CloseApplication();
 }

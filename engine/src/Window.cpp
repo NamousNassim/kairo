@@ -26,6 +26,16 @@ bool Window::getIsWindowCreated () const
 
 }
 
+bool Window::windowShouldClose() const
+{   if(this->window != nullptr) 
+    {
+    return glfwWindowShouldClose(this->window);
+    }
+    else {
+        return true;
+    }
+}
+
 void Window::InitWindow()
 {   if(!this->isWindowCreated)
     {

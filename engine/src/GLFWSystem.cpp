@@ -35,5 +35,10 @@ if(!isGLFWnitialized)
    }
 }
 
+}
 
+void GLFWSystem::PollEvents()
+{
+if(isGLFWnitialized){
+    glfwPollEvents();}
 }
