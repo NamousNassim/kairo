@@ -47,3 +47,8 @@ if (this->window) {
     }
     
 }
+
+void Window::bufferSwap(){
+    if(this->window != nullptr)
+    glfwSwapBuffers(this->window);
+}

@@ -52,12 +52,31 @@ void Application::CloseApplication()
 }
 
 void Application::Start()
-{     
+{
     Initialisation();
-    
-    while (is_running && !window.windowShouldClose())  {    
-        glfwSystem.PollEvents();
-        
+    if (!is_running || !rendrer.getIsRendrerActive())
+    {
+        return;
     }
+
+    
+    glfwSwapInterval(1);
+
+    rendrer.setBackgroundColor();
+
+    while (is_running)
+    {
+        glfwSystem.PollEvents();
+
+        if (window.windowShouldClose())
+        {
+            CloseApplication();
+            break;
+        }
+        rendrer.frameClear();
+
+        window.bufferSwap();
+    }
+
     CloseApplication();
 }
