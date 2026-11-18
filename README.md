@@ -23,18 +23,22 @@ configurations printed the expected greeting and exited successfully.
 
 ## Build
 
-Requirements: CMake 3.28 or newer, C and C++20 compilers, Git, and a native build
+Requirements: CMake 3.28 or newer, C and C++20 compilers, Python 3, Git, and a native build
 tool supported by CMake (for example, Make, Ninja, or MSBuild).
 
-CMake downloads and builds GLFW 3.5.1 from a pinned commit using `FetchContent`.
+CMake downloads and builds GLFW 3.5.1 and GLAD 0.1.36 from pinned commits using `FetchContent`.
 The first configuration of each build directory requires internet access.
-Dependencies remain under `out/build/`; no system-wide GLFW installation is
+Dependencies remain under `out/build/`; no system-wide GLFW or GLAD installation is
 needed. GLFW documentation, examples, tests, and installation rules are disabled.
 
 The engine links GLFW publicly because `kairo/GLFWSystem.hpp` includes its header.
 Consumers therefore inherit GLFW's include paths and link dependencies. The
 engine also sets `GLFW_INCLUDE_NONE` so GLFW does not implicitly include OpenGL
-headers; a graphics loader can be selected later.
+headers. GLAD is also linked publicly, providing `<glad/glad.h>` and
+`gladLoadGLLoader` to the engine and its consumers. Python generates the loader
+at build time using GLAD's bundled specifications, with OpenGL 3.3 core as the
+default API. The application still needs to create a current OpenGL context and
+call `gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)` before using OpenGL functions.
 
 From the project root:
 

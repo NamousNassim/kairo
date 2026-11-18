@@ -1,5 +1,6 @@
 #pragma once
 #include "kairo/GLFWSystem.hpp"
+#include "kairo/Rendrer.hpp"
 #include "kairo/Window.hpp"
 #include <string>
 class Application
@@ -17,5 +18,6 @@ class Application
     std::string title; 
     GLFWSystem glfwSystem;
     Window window;
+    Rendrer rendrer;
 
 };

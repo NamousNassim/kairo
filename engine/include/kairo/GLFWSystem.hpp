@@ -12,6 +12,7 @@ class GLFWSystem
         bool getIsGLFWInitialized() const;
         void closeGLFW();
         void PollEvents();
+        // void clearWindow(); // test purpose
 
     private:
 
