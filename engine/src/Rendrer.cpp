@@ -35,6 +35,8 @@ void Rendrer::setBackgroundColor()
 void Rendrer::frameClear()
 {
             glClear(GL_COLOR_BUFFER_BIT);
-
-
+}
+void Rendrer::setViewport(int width, int height)
+{
+    glViewport(0, 0, width, height);
 }

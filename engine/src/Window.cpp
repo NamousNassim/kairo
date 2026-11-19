@@ -47,6 +47,18 @@ if (this->window) {
     }
     
 }
+std::pair<int, int> Window::getFrameBufferSize() const
+{
+    int width = 0;
+    int height = 0;
+
+    if (window != nullptr)
+    {
+        glfwGetFramebufferSize(window, &width, &height);
+    }
+
+    return {width, height};
+}
 
 void Window::bufferSwap(){
     if(this->window != nullptr)

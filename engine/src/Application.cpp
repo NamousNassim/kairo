@@ -50,31 +50,40 @@ void Application::CloseApplication()
     this->is_running = false;
     }
 }
-
 void Application::Start()
 {
     Initialisation();
-    if (!is_running || !rendrer.getIsRendrerActive())
-    {
-        return;
-    }
 
-    
-    glfwSwapInterval(1);
+    if (!is_running || !rendrer.getIsRendrerActive())
+        return;
+
+    glfwSwapInterval(1); // Enable VSync
 
     rendrer.setBackgroundColor();
 
     while (is_running)
     {
+        // 1. Process window events
         glfwSystem.PollEvents();
 
         if (window.windowShouldClose())
-        {
-            CloseApplication();
             break;
-        }
+
+        // 2. Retrieve actual framebuffer dimensions
+        auto [width, height] = window.getFrameBufferSize();
+
+        // 3. Skip rendering if framebuffer is unavailable
+        if (width == 0 || height == 0)
+            continue;
+
+        // 4. Update the viewport every frame
+        rendrer.setViewport(width, height);
+
+        // 5. Clear the framebuffer
         rendrer.frameClear();
 
+        rendrer.RenderTraingle();
+       
         window.bufferSwap();
     }
 

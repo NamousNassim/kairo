@@ -10,6 +10,8 @@ class Rendrer
     bool getIsRendrerActive () const;
     void frameClear();
     void setBackgroundColor();
+    void setViewport(int width, int height);
+    void RenderTraingle();
     private:
     bool isRendrerActive;
     Window &window;

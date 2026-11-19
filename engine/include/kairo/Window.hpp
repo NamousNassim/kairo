@@ -1,6 +1,7 @@
 #pragma once
 #include "kairo/GLFWSystem.hpp"
 #include <string>
+#include <utility>
 class Window
 {
     public:
@@ -11,6 +12,7 @@ class Window
     bool getIsWindowCreated ()const;
     bool windowShouldClose() const;
     void bufferSwap();
+    std::pair<int, int> getFrameBufferSize() const;
     private:
     std::string title;
     unsigned int height;
